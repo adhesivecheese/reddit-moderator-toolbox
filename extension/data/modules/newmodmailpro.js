@@ -58,8 +58,7 @@ export default new Module({
             ],
             default: 'leave_unchanged',
             advanced: true,
-            description:
-                'Automatically switch "reply as" selection',
+            description: 'Automatically switch "reply as" selection',
         },
         {
             id: 'showModmailPreview',
@@ -110,26 +109,26 @@ export default new Module({
     function switchReplyAs () {
         const current = $('.ThreadViewerReplyForm__replyOptions .FancySelect__valueText').text();
 
-        switch(modmailReplyAs) {
+        switch (modmailReplyAs) {
             case 'reply_as_myself':
                 if (current !== 'Reply as myself') {
                     $body.find('.FancySelect__value').click();
                     $body.find('.FancySelect__option:contains("Reply as myself")').click();
-                };
+                }
                 break;
 
              case 'reply_as_the_subreddit':
                 if (current !== 'Reply as the subreddit') {
                     $body.find('.FancySelect__value').click();
                     $body.find('.FancySelect__option:contains("Reply as the subreddit")').click();
-                };
+                }
                 break;
 
             case 'create_a_private_moderator_note':
                 if (current !== 'Create a Private Moderator Note') {
                     $body.find('.FancySelect__value').click();
                     $body.find('.FancySelect__option:contains("Create a Private Moderator Note")').click();
-                };
+                }
                 break;
         }
 
