@@ -272,7 +272,7 @@ export default new Module({
             submitReplyForm();
         };
 
-        if (modmailReplyAs != 'leave_unchanged') {
+        if (modmailReplyAs !== 'leave_unchanged') {
             window.addEventListener('TBNewPage', event => {
                 if (event.detail.pageType === 'modmailConversation') {
                     setTimeout(() => {
