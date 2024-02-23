@@ -117,7 +117,7 @@ export default new Module({
                 }
                 break;
 
-             case 'reply_as_the_subreddit':
+            case 'reply_as_the_subreddit':
                 if (current !== 'Reply as the subreddit') {
                     $body.find('.FancySelect__value').click();
                     $body.find('.FancySelect__option:contains("Reply as the subreddit")').click();
