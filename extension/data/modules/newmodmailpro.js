@@ -48,12 +48,18 @@ export default new Module({
             description: 'Open modmail in nightmode',
         },
         {
-            id: 'noReplyAsSelf',
-            type: 'boolean',
-            default: false,
+            id: 'modmailReplyAs',
+            type: 'selector',
+            values: [
+                'Leave Unchanged',
+                'Reply as Myself',
+                'Reply as the subreddit',
+                'Create a Private Moderator Note',
+            ],
+            default: 'leave_unchanged',
             advanced: true,
             description:
-                'Automatically switch "reply as" selection away from "Reply as myself" to "Reply as subreddit".',
+                'Automatically switch "reply as" selection',
         },
         {
             id: 'showModmailPreview',
@@ -90,7 +96,7 @@ export default new Module({
 }, ({
     modmailnightmode: modMailNightmode,
     lastreplytypecheck: lastReplyTypeCheck,
-    noReplyAsSelf,
+    modmailReplyAs,
     showModmailPreview,
     clickableReason,
     sourceButton,
@@ -101,12 +107,32 @@ export default new Module({
 }) => {
     const $body = $('body');
 
-    function switchAwayFromReplyAsSelf () {
+    function switchReplyAs () {
         const current = $('.ThreadViewerReplyForm__replyOptions .FancySelect__valueText').text();
-        if (current === 'Reply as myself') {
-            $body.find('.FancySelect__value').click();
-            $body.find('.FancySelect__option:contains("Reply as the subreddit")').click();
+
+        switch(modmailReplyAs) {
+            case 'reply_as_myself':
+                if (current !== 'Reply as myself') {
+                    $body.find('.FancySelect__value').click();
+                    $body.find('.FancySelect__option:contains("Reply as myself")').click();
+                };
+                break;
+
+             case 'reply_as_the_subreddit':
+                if (current !== 'Reply as the subreddit') {
+                    $body.find('.FancySelect__value').click();
+                    $body.find('.FancySelect__option:contains("Reply as the subreddit")').click();
+                };
+                break;
+
+            case 'create_a_private_moderator_note':
+                if (current !== 'Create a Private Moderator Note') {
+                    $body.find('.FancySelect__value').click();
+                    $body.find('.FancySelect__option:contains("Create a Private Moderator Note")').click();
+                };
+                break;
         }
+
     }
 
     /**
@@ -248,11 +274,11 @@ export default new Module({
             submitReplyForm();
         };
 
-        if (noReplyAsSelf) {
+        if (modmailReplyAs != 'leave_unchanged') {
             window.addEventListener('TBNewPage', event => {
                 if (event.detail.pageType === 'modmailConversation') {
                     setTimeout(() => {
-                        switchAwayFromReplyAsSelf();
+                        switchReplyAs();
                     }, 1000);
                 }
             });
