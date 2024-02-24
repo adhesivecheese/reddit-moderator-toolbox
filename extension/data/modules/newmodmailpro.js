@@ -107,6 +107,7 @@ export default new Module({
     const $body = $('body');
 
     function switchReplyAs () {
+        //Currently this is only working cosmetically; it'll change the text, but none of the ways I've tried here actually propogate and change
         $body.find("#native-select-option").trigger("click");
         switch(modmailReplyAs) {
             case 'reply_as_myself':
