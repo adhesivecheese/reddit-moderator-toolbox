@@ -107,19 +107,19 @@ export default new Module({
     const $body = $('body');
 
     function switchReplyAs () {
-        //Currently this is only working cosmetically; it'll change the text, but none of the ways I've tried here actually propogate and change
-        $body.find("#native-select-option").trigger("click");
+        // Currently this is only working cosmetically; it'll change the text, but none of the ways I've tried here actually propogate and change
+        $body.find("#native-select-option").trigger('click');
         switch(modmailReplyAs) {
             case 'reply_as_myself':
-                $body.find("#native-select-option").val("null").trigger("click");
+                $body.find('#native-select-option').val('null').trigger('click');
                 break;
 
             case 'reply_as_the_subreddit':
-                $body.find("#native-select-option").val("isAuthorHidden").trigger("change");
+                $body.find('#native-select-option').val('isAuthorHidden').trigger('change');
                 break;
 
             case 'create_a_private_moderator_note':
-                $body.find("#native-select-option").val("isInternal").trigger("change");
+                $body.find('#native-select-option').val('isInternal').trigger('change');
                 break;
         }
     }
