@@ -107,28 +107,18 @@ export default new Module({
     const $body = $('body');
 
     function switchReplyAs () {
-        const current = $('.ThreadViewerReplyForm__replyOptions .FancySelect__valueText').text();
-
-        switch (modmailReplyAs) {
+        $body.find("#native-select-option").trigger("click");
+        switch(modmailReplyAs) {
             case 'reply_as_myself':
-                if (current !== 'Reply as myself') {
-                    $body.find('.FancySelect__value').click();
-                    $body.find('.FancySelect__option:contains("Reply as myself")').click();
-                }
+                $body.find("#native-select-option").val("null").trigger("click");
                 break;
 
             case 'reply_as_the_subreddit':
-                if (current !== 'Reply as the subreddit') {
-                    $body.find('.FancySelect__value').click();
-                    $body.find('.FancySelect__option:contains("Reply as the subreddit")').click();
-                }
+                $body.find("#native-select-option").val("isAuthorHidden").trigger("change");
                 break;
 
             case 'create_a_private_moderator_note':
-                if (current !== 'Create a Private Moderator Note') {
-                    $body.find('.FancySelect__value').click();
-                    $body.find('.FancySelect__option:contains("Create a Private Moderator Note")').click();
-                }
+                $body.find("#native-select-option").val("isInternal").trigger("change");
                 break;
         }
     }
