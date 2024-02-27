@@ -121,6 +121,8 @@ export default new Module({
             case 'create_a_private_moderator_note':
                 $body.find('#native-select-option').val('isInternal').trigger('change');
                 break;
+            default:
+                break;
         }
     }
 
